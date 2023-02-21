@@ -1,7 +1,7 @@
-package com.cvillarreal.LiftPro.datasource.mock
+package com.cvillarreal.liftpro.datasource.mock
 
-import com.cvillarreal.LiftPro.datasource.UserDataSource
-import com.cvillarreal.LiftPro.model.User
+import com.cvillarreal.liftpro.datasource.UserDataSource
+import com.cvillarreal.liftpro.model.User
 import org.springframework.stereotype.Repository
 
 

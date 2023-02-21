@@ -1,7 +1,7 @@
-package com.cvillarreal.LiftPro.datasource.mock
+package com.cvillarreal.liftpro.datasource.mock
 
-import com.cvillarreal.LiftPro.datasource.ExerciseDataSource
-import com.cvillarreal.LiftPro.model.exercise.Exercise
+import com.cvillarreal.liftpro.datasource.ExerciseDataSource
+import com.cvillarreal.liftpro.model.exercise.Exercise
 import org.springframework.stereotype.Repository
 
 

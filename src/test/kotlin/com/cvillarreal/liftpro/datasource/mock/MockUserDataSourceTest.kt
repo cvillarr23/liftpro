@@ -1,4 +1,4 @@
-package com.cvillarreal.LiftPro.datasource.mock
+package com.cvillarreal.liftpro.datasource.mock
 
 
 import org.assertj.core.api.Assertions

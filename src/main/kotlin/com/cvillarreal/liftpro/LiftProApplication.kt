@@ -1,4 +1,4 @@
-package com.cvillarreal.LiftPro
+package com.cvillarreal.liftpro
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

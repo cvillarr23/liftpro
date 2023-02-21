@@ -1,6 +1,6 @@
-package com.cvillarreal.LiftPro.datasource
+package com.cvillarreal.liftpro.datasource
 
-import com.cvillarreal.LiftPro.model.Workout
+import com.cvillarreal.liftpro.model.Workout
 
 interface  WorkoutDataSource {
         fun  retrieveAllWorkouts(): Collection<Workout>
