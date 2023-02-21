@@ -14,33 +14,19 @@ import java.lang.System.currentTimeMillis
 
 @Repository
 class MockWorkoutDataSource: WorkoutDataSource {
-    override fun retrieveAllWorkouts(): Collection<Workout> {
-        return listOf(
-            Workout(
-                id = UUID.randomUUID(),
-                name = "Leg Day",
+    override fun retrieveAllWorkoutsByUser(userID: UUID): Collection<Workout> {
+        TODO("Not yet implemented")
+    }
 
-                exercises = listOf(
-                    UserExerciseInstance(
-                        id = UUID.randomUUID(),
-                        workoutID = UUID.randomUUID(),
-                        exerciseID = 1,
-                        date = Date(currentTimeMillis()),
-                        instanceSets = listOf(
-                            ExerciseSet(
-                                id = UUID.randomUUID(),
-                                weight = ExerciseWeight(
-                                    totalWeight = Weight(100.0),
-                                    baseWeight = BaseWeight("Olympic", Weight(20.0))),
-                                reps = 10,
-                                exerciseInstanceID = UUID.randomUUID()
-                            )
-                        ),
-                        notes = "",
-                        userID = UUID.randomUUID()
-                    )
-                ),
-            )
-        )
+    override fun retrieveWorkoutById(id: String): Workout? {
+        TODO("Not yet implemented")
+    }
+
+    override fun retrieveMostRecentWorkoutByUser(userID: UUID): Workout? {
+        TODO("Not yet implemented")
+    }
+
+    override fun createWorkout(workout: Workout): UUID {
+        TODO("Not yet implemented")
     }
 }
