@@ -1,0 +1,23 @@
+
+name: Build and Test
+on: [ push, pull_request ]
+jobs:
+  build:
+    name: Test and Build
+    runs-on: ubuntu-latest
+    steps:
+
+      # Setup Java 17
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'temurin'
+
+      # Check out current repository
+      - name: Fetch Sources
+        uses: actions/checkout@v3
+
+      # Build application
+      - name: Test and Build
+        run: ./gradlew build

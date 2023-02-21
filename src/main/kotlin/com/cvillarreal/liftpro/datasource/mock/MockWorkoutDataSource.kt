@@ -2,65 +2,44 @@ package com.cvillarreal.liftpro.datasource.mock
 
 import com.cvillarreal.liftpro.datasource.WorkoutDataSource
 import com.cvillarreal.liftpro.model.Workout
-import com.cvillarreal.liftpro.model.exercise.Exercise
 import com.cvillarreal.liftpro.model.exercise.UserExerciseInstance
 import com.cvillarreal.liftpro.model.exercise.ExerciseSet
+import com.cvillarreal.liftpro.model.weights.BaseWeight
+import com.cvillarreal.liftpro.model.weights.ExerciseWeight
+import com.cvillarreal.liftpro.model.weights.Weight
 import org.springframework.stereotype.Repository
 import java.sql.Date
+import java.util.UUID
+import java.lang.System.currentTimeMillis
 
 @Repository
 class MockWorkoutDataSource: WorkoutDataSource {
     override fun retrieveAllWorkouts(): Collection<Workout> {
         return listOf(
             Workout(
-                id = 0,
+                id = UUID.randomUUID(),
                 name = "Leg Day",
-                exercises = listOf<UserExerciseInstance>(
+
+                exercises = listOf(
                     UserExerciseInstance(
-                        id = 0,
-                        workoutID = 0,
-                        exerciseID = 0,
-                        date = Date(0),
-                        exercise = Exercise(
-                            id = 0,
-                            name = "Squat"
-                        ),
-                        instanceSets = listOf<ExerciseSet>(
-                            ExerciseSet(
-                                id = 0,
-                                exerciseInstanceId = 0,
-                                weight = 0.0,
-                                reps = 0,
-                                notes = "",
-                                user = 0
-                            )
-                        ),
-                        notes = "",
-                        user = 0
-                    ),
-                    UserExerciseInstance(
-                        id = 1,
-                        workoutID = 0,
+                        id = UUID.randomUUID(),
+                        workoutID = UUID.randomUUID(),
                         exerciseID = 1,
-                        date = Date(0),
-                        exercise = Exercise(
-                            id = 1,
-                            name = "Deadlift"
-                        ),
-                        instanceSets = listOf<ExerciseSet>(
+                        date = Date(currentTimeMillis()),
+                        instanceSets = listOf(
                             ExerciseSet(
-                                id = 1,
-                                exerciseInstanceId = 1,
-                                weight = 0.0,
-                                reps = 1,
-                                notes = "",
-                                user = 0
+                                id = UUID.randomUUID(),
+                                weight = ExerciseWeight(
+                                    totalWeight = Weight(100.0),
+                                    baseWeight = BaseWeight("Olympic", Weight(20.0))),
+                                reps = 10,
+                                exerciseInstanceID = UUID.randomUUID()
                             )
                         ),
                         notes = "",
-                        user = 0
+                        userID = UUID.randomUUID()
                     )
-                )
+                ),
             )
         )
     }

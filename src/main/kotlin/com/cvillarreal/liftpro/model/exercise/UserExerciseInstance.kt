@@ -18,7 +18,6 @@ data class UserExerciseInstance(
     val workoutID: UUID,
     val exerciseID: Int,
     val date: Date,
-    val exercise: Exercise,
     val instanceSets: List<ExerciseSet>,
     val notes: String,
     )

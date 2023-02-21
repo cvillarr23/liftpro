@@ -2,11 +2,11 @@ package com.cvillarreal.liftpro.model.weights
 
 /**
  * Represents a weight in kilograms
- * @property weight The weight in kilograms
+ * @property totalWeight The weight in kilograms
  * @constructor Creates a new weight
  */
 class ExerciseWeight(
-    val weight: Double,
+    val totalWeight: Weight,
     val baseWeight: BaseWeight? = null
 ) {
 
@@ -14,8 +14,8 @@ class ExerciseWeight(
      * Converts the weight to pounds
      * @return The weight in pounds
      */
-    fun toPounds(): ExerciseWeight {
-        return ExerciseWeight(weight * 2.20462)
+    fun toPounds(): Double {
+        return totalWeight.toPounds()
     }
 
     /**

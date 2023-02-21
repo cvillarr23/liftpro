@@ -4,16 +4,23 @@ package com.cvillarreal.liftpro.model.weights
 /**
  * Represents a weight in kilograms.
  */
-class Weight(
-    val weightKg: Double,
-) {
+class Weight{
+
+    val weightKg: Double
+
+    constructor(weightKg: Double) {
+        if (weightKg < 0) {
+            throw IllegalArgumentException("Weight cannot be negative")
+        }
+        this.weightKg = weightKg
+    }
 
     /**
      * Converts the weight to pounds
      * @return The weight in pounds
      */
-    fun toPounds(): Weight {
-        return Weight(weightKg * 2.20462)
+    fun toPounds(): Double {
+        return weightKg * 2.20462
     }
 
     /**

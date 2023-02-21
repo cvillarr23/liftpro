@@ -10,8 +10,8 @@ import java.util.UUID
  * @property instances A list of all the instances the user performed the exercise.
  */
 data class UserExerciseStats(
-    val id: Integer,
+    val id: Int,
     val userID: UUID,
-    val exerciseID: Integer,
+    val exerciseID: Int,
     val instances: Collection<UserExerciseInstance>
 )
