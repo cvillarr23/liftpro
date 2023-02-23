@@ -21,4 +21,8 @@ class UserService(
         throw Exception("Could not create new user")
     }
 
+    fun deleteUser(id: UUID) {
+        TODO("Not yet implemented")
+    }
+
 }
