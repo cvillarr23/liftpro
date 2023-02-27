@@ -1,7 +1,6 @@
-package com.cvillarreal.LiftPro.service
+package com.cvillarreal.liftpro.service
 
-import com.cvillarreal.LiftPro.datasource.UserDataSource
-import com.cvillarreal.liftpro.model.User
+import com.cvillarreal.liftpro.datasource.UserDataSource
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

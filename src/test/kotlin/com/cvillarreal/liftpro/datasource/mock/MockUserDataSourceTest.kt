@@ -1,6 +1,5 @@
 package com.cvillarreal.liftpro.datasource.mock
 
-import com.cvillarreal.LiftPro.datasource.mock.MockUserDataSource
 import com.cvillarreal.liftpro.exceptions.UserNotFoundException
 import com.cvillarreal.liftpro.model.User
 import org.assertj.core.api.Assertions.*
@@ -21,7 +20,7 @@ internal  class MockUserDataSourceTest {
 
         // then
         assertThat(userDataSource.getUsers()).isNotEmpty
-        assertThat(userDataSource.getUsers()).hasSize(1)
+        assertThat(userDataSource.getUsers()).hasSize(2)
      }
 
 

@@ -1,21 +1,21 @@
-package com.cvillarreal.LiftPro.datasource.mock
+package com.cvillarreal.liftpro.datasource.mock
 
-import com.cvillarreal.LiftPro.datasource.UserDataSource
+import com.cvillarreal.liftpro.datasource.UserDataSource
 import com.cvillarreal.liftpro.exceptions.UserNotFoundException
 import com.cvillarreal.liftpro.model.User
 import org.springframework.stereotype.Repository
 import java.util.*
 
 
-@Repository
+@Repository("mock")
 class MockUserDataSource: UserDataSource {
 
-    val users = mutableListOf<User>()
+    val users = mutableListOf(
+        User(id = UUID(0,0), email = "test", password = "test")
+    )
 
     override fun getUsers(): Collection<User> {
-        return listOf (
-            User(id = UUID.randomUUID(), email = "test@test.com", password = "test")
-        )
+        return users
     }
 
     override fun getUserById(id: UUID): User {
@@ -24,11 +24,16 @@ class MockUserDataSource: UserDataSource {
 
     override fun insertNewUser(user: User): Boolean {
         users.add(user)
+        println("Added new user: $users")
         return true
     }
 
     override fun retrieveUserByID(id: UUID): User? {
         return users.find { it.id == id }
+    }
+
+    override fun deleteUserByID(id: UUID): Boolean {
+        return users.removeIf { it.id == id }
     }
 
 }
