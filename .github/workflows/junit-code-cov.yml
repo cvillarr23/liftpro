@@ -22,7 +22,7 @@ jobs:
       # Add coverage to PR
       - name: Add Coverage to PR
         id: jacoco
-        uses: madrapps/jaccoco-report@v1.3
+        uses: Madrapps/jacoco-report@v1.3
         with:
           paths: ${{ github.workspace }}/build/reports/jacoco/testCoverage/testCoverage.xml
           token: ${{ secrets.GITHUB_TOKEN }}
