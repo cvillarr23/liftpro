@@ -1,6 +1,6 @@
 
-name: Build and Test
-on: [ push, pull_request ]
+name: Build Gradle Project
+on: [ pull_request ]
 jobs:
   build:
     name: Test and Build
