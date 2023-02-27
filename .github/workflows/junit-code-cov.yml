@@ -1,0 +1,40 @@
+name: Measure Code Coverage
+on: [ pull_request ]
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      # Setup Java 17
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'temurin'
+
+      # Check out current repository
+      - name: Fetch Sources
+        uses: actions/checkout@v3
+
+      # Run coverage
+      - name: Run Coverage
+        run: ./gradlew jacocoTestReport
+
+      # Add coverage to PR
+      - name: Add Coverage to PR
+        id: jacoco
+        uses: madrapps/jaccoco-report@v1.3
+        with:
+          paths: ${{ github.workspace }}/build/reports/jacoco/testCoverage/testCoverage.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          min-coverage-overall: 100
+          min-coverage-changed-files: 100
+          update-comment: true
+
+    # Fail if coverage is not 100%
+    - name: Fail if coverage is not 100%
+      if: steps.jacoco.outputs.coverage-overall < 100
+      run: exit 1
+
+    # Update Readme Badge
+    - name: Update Readme Badge
+      uses: cicirello/jacoco-badge-generator@v2.8.1
