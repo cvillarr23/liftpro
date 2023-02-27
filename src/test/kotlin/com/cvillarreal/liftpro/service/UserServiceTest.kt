@@ -6,6 +6,7 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import java.util.*
 
 internal class UserServiceTest {
@@ -38,5 +39,13 @@ internal class UserServiceTest {
         assertThat(id).isInstanceOf(UUID::class.java)
      }
         
-        
+    @Test
+    fun `should throw exception if the data source could not create a user`() {
+        //given
+        every { userDataSource.insertNewUser(any()) } returns false
+        // when/then
+        assertThrows<Exception> { userService.createNewUser(email = "test", password = "test") }
+     }
+
+
 }

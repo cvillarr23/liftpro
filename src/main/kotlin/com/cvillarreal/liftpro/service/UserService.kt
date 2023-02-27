@@ -29,7 +29,7 @@ class UserService(
 
     fun getUserByID(id: UUID): User? {
         return try {
-            userDataSource.getUserById(id)
+            userDataSource.retrieveUserById(id)
         } catch (e: UserNotFoundException) {
             null
         }
