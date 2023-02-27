@@ -10,4 +10,6 @@ interface UserDataSource {
 
     fun insertNewUser(user: User): Boolean
 
+    fun retrieveUserByID(id: UUID): User?
+
 }

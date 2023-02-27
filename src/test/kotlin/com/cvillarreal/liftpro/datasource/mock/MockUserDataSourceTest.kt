@@ -1,10 +1,9 @@
 package com.cvillarreal.liftpro.datasource.mock
 
 import com.cvillarreal.LiftPro.datasource.mock.MockUserDataSource
-import com.cvillarreal.liftpro.exceptions.NoUserFoundException
+import com.cvillarreal.liftpro.exceptions.UserNotFoundException
 import com.cvillarreal.liftpro.model.User
-import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 import java.util.*
 
@@ -36,13 +35,18 @@ internal  class MockUserDataSourceTest {
         val newUser = User(id = UUID.randomUUID(), email = "test@test.com", password = "test")
         val res = userDataSource.insertNewUser(user = newUser)
 
-        val retrievedUser = userDataSource.getUserById(id = newUser.id)
+        val retrievedUser = newUser.id?.let { userDataSource.getUserById(id = it) }
 
         // then
         assertThat(res).isTrue
-        assertThat(retrievedUser.id).isNotNull
-        assertThat(retrievedUser.id).isInstanceOf(UUID::class.java)
-        assertThat(retrievedUser.id).isEqualTo(newUser.id)
+        if (retrievedUser != null) {
+            assertThat(retrievedUser.id).isNotNull
+            assertThat(retrievedUser.id).isInstanceOf(UUID::class.java)
+            assertThat(retrievedUser.id).isEqualTo(newUser.id)
+        } else {
+            fail("retrievedUser is null, could not retrieve user by ID")
+        }
+
      }
 
     @Test
@@ -53,7 +57,7 @@ internal  class MockUserDataSourceTest {
         // then
         assertThatThrownBy {
             userDataSource.getUserById(id = UUID.randomUUID())
-        }.isInstanceOf(NoUserFoundException::class.java)
+        }.isInstanceOf(UserNotFoundException::class.java)
      }
 
 

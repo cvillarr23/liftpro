@@ -7,6 +7,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.delete
+import org.springframework.test.web.servlet.get
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
@@ -39,7 +42,7 @@ internal class UserControllerTest {
 
         // Try to retrieve the user by ID
         mockMvc.perform(
-            post("/api/v1/user/$id")
+            get("/api/v1/user/$id")
                 .contentType(MediaType.APPLICATION_JSON)
         )
             .andExpect {
@@ -50,39 +53,55 @@ internal class UserControllerTest {
             }
     }
 
+    @Test
+    fun `should return 404 when trying to retrieve a user with invalid ID`() {
+        //given
+        val id = UUID.randomUUID()
 
-//    @Test
-//    fun `should be able to delete a user`() {
-//        val result = mockMvc.perform(
-//            post("/api/v1/user/new")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content("{\"email\": \"test\", \"password\": \"test\"}")
-//        ).andExpect(
-//            status().isOk
-//        ).andReturn()
-//
-//        // Check that result is a valid UUID string, if not, this will throw an exception
-//        val id = UUID.fromString(result.response.contentAsString)
-//
-//        // Try to delete the user by ID
-//        mockMvc.perform(
-//            delete("/api/v1/user/$id")
-//                .contentType(MediaType.APPLICATION_JSON)
-//        )
-//            .andExpect {
-//                status().isOk
-//            }
-//
-//        // Try to delete the user again, should fail
-//        mockMvc.perform(
-//            delete("/api/v1/user/$id")
-//                .contentType(MediaType.APPLICATION_JSON)
-//        )
-//            .andExpect {
-//                status().isNotFound
-//            }
-//
-//     }
+        // when
+        val result = mockMvc.get("/api/v1/user/$id")
+            .andExpect {
+                status().isNotFound
+            }
+     }
 
 
+    @Test
+    fun `should return 404 when trying to delete a user with invalid ID`() {
+        //given
+        val id = UUID.randomUUID()
+
+        // when
+        mockMvc.delete("/api/v1/user/$id")
+            .andExpect {
+                status().isNotFound
+            }
+     }
+
+    @Test
+    fun `should delete user after calling the delete user by ID endpoint`() {
+        //given
+        val result = mockMvc.perform(
+            post("/api/v1/user/new")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"test\", \"password\": \"test\"}")
+        ).andExpect(
+            status().isOk
+        ).andReturn()
+
+        // Check that result is a valid UUID string, if not, this will throw an exception
+        val id = UUID.fromString(result.response.contentAsString)
+
+        // when
+        mockMvc.delete("/api/v1/user/$id")
+            .andExpect {
+                status().isOk
+            }
+
+        // then
+        mockMvc.get("/api/v1/user/$id")
+            .andExpect {
+                status().isNotFound
+            }
+     }
 }
