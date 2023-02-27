@@ -34,7 +34,7 @@ internal  class MockUserDataSourceTest {
         val newUser = User(id = UUID.randomUUID(), email = "test@test.com", password = "test")
         val res = userDataSource.insertNewUser(user = newUser)
 
-        val retrievedUser = newUser.id?.let { userDataSource.getUserById(id = it) }
+        val retrievedUser = newUser.id?.let { userDataSource.retrieveUserById(id = it) }
 
         // then
         assertThat(res).isTrue
@@ -55,9 +55,23 @@ internal  class MockUserDataSourceTest {
 
         // then
         assertThatThrownBy {
-            userDataSource.getUserById(id = UUID.randomUUID())
+            userDataSource.retrieveUserById(id = UUID.randomUUID())
         }.isInstanceOf(UserNotFoundException::class.java)
      }
-
+    
+    @Test
+    fun `should `() {
+        //given
+        
+        
+        // when
+        
+        
+        // then
+        
+        
+     }
+        
+        
 
 }

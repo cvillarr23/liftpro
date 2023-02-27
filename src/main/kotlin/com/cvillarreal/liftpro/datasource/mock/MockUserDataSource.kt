@@ -4,7 +4,7 @@ import com.cvillarreal.liftpro.datasource.UserDataSource
 import com.cvillarreal.liftpro.exceptions.UserNotFoundException
 import com.cvillarreal.liftpro.model.User
 import org.springframework.stereotype.Repository
-import java.util.*
+import java.util.UUID
 
 
 @Repository("mock")
@@ -18,7 +18,7 @@ class MockUserDataSource: UserDataSource {
         return users
     }
 
-    override fun getUserById(id: UUID): User {
+    override fun retrieveUserById(id: UUID): User {
         return users.find { it.id == id } ?: throw UserNotFoundException("Could not find user with id $id")
     }
 
@@ -26,10 +26,6 @@ class MockUserDataSource: UserDataSource {
         users.add(user)
         println("Added new user: $users")
         return true
-    }
-
-    override fun retrieveUserByID(id: UUID): User? {
-        return users.find { it.id == id }
     }
 
     override fun deleteUserByID(id: UUID): Boolean {
