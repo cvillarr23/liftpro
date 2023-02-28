@@ -17,23 +17,7 @@ jobs:
 
       # Run coverage
       - name: Run Coverage
-        run: ./gradlew jacocoTestReport
-
-      # Add coverage to PR
-      - name: Add Coverage to PR
-        id: jacoco
-        uses: Madrapps/jacoco-report@v1.3
-        with:
-          paths: ${{ github.workspace }}/build/reports/jacoco/testCoverage/testCoverage.xml
-          token: ${{ secrets.GITHUB_TOKEN }}
-          min-coverage-overall: 100
-          min-coverage-changed-files: 100
-          update-comment: true
-
-      # Fail if coverage is not 100%
-      - name: Fail if coverage is not 100%
-        if: steps.jacoco.outputs.coverage-overall < 100
-        run: exit 1
+        run: ./gradlew jacocoTestCoverageVerification
 
       # Update Readme Badge
       - name: Update Readme Badge
