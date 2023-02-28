@@ -19,6 +19,4 @@ jobs:
       - name: Run Coverage
         run: ./gradlew jacocoTestCoverageVerification
 
-      # Update Readme Badge
-      - name: Update Readme Badge
-        uses: cicirello/jacoco-badge-generator@v2.8.1
+
