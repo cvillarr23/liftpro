@@ -56,7 +56,7 @@ internal class UserControllerTest {
         val id = UUID.randomUUID()
 
         // when
-        val result = mockMvc.perform(
+        mockMvc.perform(
             get("/api/v1/user/$id")
         )
             .andExpect {
