@@ -1,7 +1,5 @@
 package com.cvillarreal.liftpro.model.exercise
 
-import java.util.UUID
-
 /**
  * Represents a user's stats for a specific exercise.
  * @property id The id for UserExerciseStats in the DB.
@@ -9,9 +7,9 @@ import java.util.UUID
  * @property exercise_id The exercise the stats are for.
  * @property instances A list of all the instances the user performed the exercise.
  */
-data class UserExerciseStats(
-    val id: Int,
-    val userID: UUID,
-    val exerciseID: Int,
-    val instances: Collection<UserExerciseInstance>
-)
+//data class UserExerciseStats(
+//    val id: Int,
+//    val userID: UUID,
+//    val exerciseID: Int,
+//    val instances: Collection<UserExerciseInstance>
+//)

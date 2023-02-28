@@ -5,7 +5,7 @@ import java.util.*
 
 @Serializable
 data class User(
-    var id: UUID,
+    var id: UUID? = null,
     val email: String,
     val password: String
 )

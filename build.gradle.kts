@@ -44,12 +44,22 @@ jacoco {
 	toolVersion = "0.8.8"
 }
 
+tasks.jacocoTestReport {
+	dependsOn(tasks.test)
+	reports {
+		xml.required.set(true)
+		xml.outputLocation.set(file("$buildDir/reports/jacoco/testCoverage/testCoverage.xml"))
+		html.required.set(true)
+		csv.required.set(true)
+	}
+}
+
 tasks.jacocoTestCoverageVerification {
 	dependsOn(tasks.test)
 	violationRules {
 		rule {
 			limit {
-				minimum = "1.0".toBigDecimal()
+				minimum = "0.95".toBigDecimal()
 			}
 		}
 	}

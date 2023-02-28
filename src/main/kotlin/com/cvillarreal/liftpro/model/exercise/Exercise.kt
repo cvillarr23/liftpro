@@ -5,8 +5,8 @@ package com.cvillarreal.liftpro.model.exercise
  * @property id identifying the exercise in the DB
  * @property name of the exercise
  */
-data class Exercise(
-    val id: Int,
-    val name: String,
-
-)
+//data class Exercise(
+//    val id: Int,
+//    val name: String,
+//
+//)
