@@ -48,8 +48,9 @@ tasks.jacocoTestReport {
 	dependsOn(tasks.test)
 	reports {
 		xml.required.set(true)
-		html.required.set(true)
 		xml.outputLocation.set(file("$buildDir/reports/jacoco/testCoverage/testCoverage.xml"))
+		html.required.set(true)
+		csv.required.set(true)
 	}
 }
 
