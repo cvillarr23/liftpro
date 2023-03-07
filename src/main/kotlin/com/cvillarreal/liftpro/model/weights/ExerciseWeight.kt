@@ -34,9 +34,6 @@ class ExerciseWeight{
     var baseWeight: BaseWeight? = null
 
     constructor(totalWeight: Weight, baseWeight: BaseWeight? = null) {
-        if (totalWeight.weightLb < 0) {
-            throw IllegalArgumentException("Weight cannot be negative")
-        }
         if (baseWeight != null && baseWeight.weight.weightLb > totalWeight.weightLb) {
             throw IllegalArgumentException("Base weight cannot be greater than total weight")
         }
