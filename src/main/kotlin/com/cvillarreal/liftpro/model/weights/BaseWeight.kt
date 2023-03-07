@@ -5,7 +5,7 @@ package com.cvillarreal.liftpro.model.weights
  * @property name The name of the base weight
  * @property weight The weight of the base weight
  */
-//class BaseWeight(
-//    val name: String,
-//    val weight: Weight
-//)
+class BaseWeight(
+    val name: String,
+    val weight: Weight
+)
