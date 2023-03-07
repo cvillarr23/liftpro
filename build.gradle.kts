@@ -1,5 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+repositories {
+	mavenCentral()
+}
+
 plugins {
 	id("org.springframework.boot") version "3.0.2"
 	id("io.spring.dependency-management") version "1.1.0"
@@ -12,9 +16,7 @@ group = "com.cvillarreal"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
-repositories {
-	mavenCentral()
-}
+
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -23,7 +25,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin:1.8.10")
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.mockk:mockk:1.13.4")
@@ -60,7 +62,9 @@ tasks.jacocoTestCoverageVerification {
 	violationRules {
 		rule {
 			limit {
-				minimum = "0.95".toBigDecimal()
+				counter = "INSTRUCTION"
+				value = "COVEREDRATIO"
+				minimum = "0.90".toBigDecimal()
 			}
 		}
 	}

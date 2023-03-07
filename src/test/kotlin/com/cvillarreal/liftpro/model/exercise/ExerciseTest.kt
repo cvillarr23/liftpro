@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 
 internal class ExerciseTest {
     @Test
-    fun `should have a immutable id, name, weightType and bodyPart`() {
+    fun `should be able to access all properties`() {
         // when
         val newExercise = Exercise(
             1,
@@ -20,6 +20,11 @@ internal class ExerciseTest {
         )
 
         // then
+        assertEquals(1, newExercise.id)
+        assertEquals("Bench Press", newExercise.name)
+        assertEquals("Barbell (20kg/45lb)", newExercise.baseWeight.name)
+        assertEquals(44.092, newExercise.baseWeight.weight.weightLb, 0.001)
+        assertEquals("Lay on the bench and press the bar", newExercise.description)
      }
 
 
