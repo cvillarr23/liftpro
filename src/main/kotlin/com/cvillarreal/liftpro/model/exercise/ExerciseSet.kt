@@ -1,5 +1,8 @@
 package com.cvillarreal.liftpro.model.exercise
 
+import com.cvillarreal.liftpro.model.weights.ExerciseWeight
+import java.util.UUID
+
 /**
  * A single set of an exercise.
  * @property order of the set in the instance.
@@ -7,11 +10,11 @@ package com.cvillarreal.liftpro.model.exercise
  * @property weight of the exercise.
  * @property reps completed in the set.
  */
-//data class ExerciseSet(
-//    val order: Int,
-//    val exerciseInstanceID: UUID,
-//    val weight: ExerciseWeight,
-//    val reps: Int,
-//)
+data class ExerciseSet(
+    val order: Int,
+    val exerciseInstanceID: UUID,
+    val weight: ExerciseWeight,
+    val reps: Int,
+)
 
 

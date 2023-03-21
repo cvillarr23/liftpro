@@ -1,5 +1,6 @@
 package com.cvillarreal.liftpro.model.weights
 
+import org.hamcrest.Matchers.closeTo
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -7,26 +8,29 @@ import org.junit.jupiter.api.Assertions.*
 class WeightTest {
 
     @Test
-    fun `should return the weight in kg`() {
+    fun `should construct and convert weight in kilograms`() {
         // when
-        val w1 = Weight(0.0)
-        val w2 = Weight(1.0)
+        val w1 = Weight(0.0, WeightUnit.KILOGRAMS)
+        val w2 = Weight(1.0, WeightUnit.KILOGRAMS)
 
         // then
-        assertEquals(0.0, w1.weightKg)
-        assertEquals(1.0, w2.weightKg)
+        assertEquals(0.0, w1.toKilogram())
+        assertEquals(1.0, w2.toKilogram(), 0.001)
+        assertEquals(0.0, w1.weightLb)
+        assertEquals(2.20462, w2.weightLb, 0.001)
      }
 
     @Test
-    fun `should return the converted weight in lbs`() {
+    fun `should return construct and convert weight in lbs`() {
         // when
         val w1 = Weight(0.0)
         val w2 = Weight(1.0)
 
         // then
-        assertEquals(0.0, w1.toPounds())
-        assertEquals(2.20462, w2.toPounds())
-
+        assertEquals(0.0, w1.weightLb, 0.001)
+        assertEquals(1.0, w2.weightLb, 0.001)
+        assertEquals(0.0, w1.toKilogram())
+        assertEquals(0.453, w2.toKilogram(), 0.001)
      }
 
     @Test
@@ -38,7 +42,7 @@ class WeightTest {
 
         // then
         assertEquals("0.0 kg", w1.toStringKg())
-        assertEquals("1.0 kg", w2.toStringKg())
+        assertEquals("0.5 kg", w2.toStringKg())
 
      }
 
@@ -50,7 +54,7 @@ class WeightTest {
 
         // then
         assertEquals("0.0 lb", w1.toStringLb())
-        assertEquals("2.2 lb", w2.toStringLb())
+        assertEquals("1.0 lb", w2.toStringLb())
 
      }
 

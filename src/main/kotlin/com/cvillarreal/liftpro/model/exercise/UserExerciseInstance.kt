@@ -1,5 +1,7 @@
 package com.cvillarreal.liftpro.model.exercise
 
+import java.util.UUID
+
 /**
  * Represents an instance of an exercise performed by a user.
  * @property id identifying the instance in the DB
@@ -10,12 +12,11 @@ package com.cvillarreal.liftpro.model.exercise
  * @property instanceSets a list of the sets in the instance
  * @property notes the user created on this instance
  */
-//data class UserExerciseInstance(
-//    val id: UUID,
-//    val userID: UUID,
-//    val workoutID: UUID,
-//    val exerciseID: Int,
-//    val date: Date,
-//    val instanceSets: List<ExerciseSet>,
-//    val notes: String,
-//    )
+data class UserExerciseInstance(
+    val id: UUID,
+    val userID: UUID,
+    val workoutID: UUID,
+    val exerciseID: Int,
+    val instanceSets: List<ExerciseSet>,
+    val notes: String,
+    )
