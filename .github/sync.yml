@@ -1,0 +1,3 @@
+cvillarr23/liftpro-mobile:
+  - source: src/main/kotlin/com/cvillarreal/liftpro/model/
+    dest: app/src/main/java/com/cvillarreal/liftpro/model/
